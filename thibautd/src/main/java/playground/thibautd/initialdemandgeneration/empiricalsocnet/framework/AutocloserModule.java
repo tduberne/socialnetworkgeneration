@@ -18,21 +18,41 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
-import playground.thibautd.utils.KDTree;
+import com.google.inject.AbstractModule;
+import com.google.inject.Singleton;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
+ * Not that nice, but best way I found to be able to pass csv writers as listenner without maintaining each one separately
  * @author thibautd
  */
-public interface CliquesFiller {
-	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
-	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
+public class AutocloserModule extends AbstractModule implements AutoCloseable {
+	private final List<AutoCloseable> closeables = new ArrayList<>();
 
-	boolean stopConsidering( Ego ego );
+	@Override
+	protected void configure() {
+		bind( Closer.class ).toInstance( new Closer( closeables ) );
+	}
+
+	@Override
+	public void close() throws Exception {
+		for ( AutoCloseable c : closeables ) {
+			c.close();
+		}
+	}
+
+	@Singleton
+	public static class Closer {
+		private final List<AutoCloseable> closeables;
+
+		public Closer( final List<AutoCloseable> closeables ) {
+			this.closeables = closeables;
+		}
+
+		public void add( final AutoCloseable closeable ) {
+			closeables.add( closeable );
+		}
+	}
 }

@@ -16,23 +16,32 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
+package playground.thibautd.utils;
 
-import playground.thibautd.utils.KDTree;
-
-import java.util.Set;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author thibautd
  */
-public interface CliquesFiller {
-	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
-	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
+public class ArrayUtilsTest {
+	@Test
+	public void testSearchLowest() {
+		final Integer[] arr = {1,2,3,3,3,4,5};
 
-	boolean stopConsidering( Ego ego );
+		int lowest = ArrayUtils.searchLowest( arr , i -> i, 3 , 0 , 7 );
+
+		Assert.assertEquals(
+				"unexpected minimum index",
+				5,
+				lowest );
+
+		lowest = ArrayUtils.searchLowest( arr , i -> i, 3 , 0 , 3 );
+
+		Assert.assertEquals(
+				"unexpected minimum index when restricting range",
+				3,
+				lowest );
+	}
 }
+

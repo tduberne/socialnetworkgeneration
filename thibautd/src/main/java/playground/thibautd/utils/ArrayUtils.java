@@ -16,23 +16,45 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
+package playground.thibautd.utils;
 
-import playground.thibautd.utils.KDTree;
-
-import java.util.Set;
+import java.util.function.ToDoubleFunction;
 
 /**
  * @author thibautd
  */
-public interface CliquesFiller {
+public class ArrayUtils {
 	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
+	 * Given a sorted array, returns the index of the first object greater than the given value
+	 * @param array an array sorted according to the result of function
+	 * @param function a function that maps objects to a scalar value
+	 * @param maxValue the maximum value the function should take
+	 * @param minRange do not search below this index
+	 * @param maxRange do not search above this index
+	 * @param <T> the type of objects
+	 * @return the first index of an object greater than the given value
 	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
+	public static <T> int searchLowest(
+			final T[] array ,
+			final ToDoubleFunction<T> function ,
+			final double maxValue,
+			final int minRange,
+			final int maxRange ) {
+		int min = minRange;
+		int max = maxRange;
 
-	boolean stopConsidering( Ego ego );
+		if ( function.applyAsDouble( array[ min ] ) > maxValue ) return min;
+
+		while ( min < max - 1 ) {
+			final int mid = (max + min) / 2;
+
+			// we want the rightmost element: "push" min even if in the right value,
+			// as long as possible
+			if ( function.applyAsDouble( array[ mid ] ) <= maxValue ) min = mid;
+			else max = mid;
+		}
+
+		return max;
+	}
 }
+

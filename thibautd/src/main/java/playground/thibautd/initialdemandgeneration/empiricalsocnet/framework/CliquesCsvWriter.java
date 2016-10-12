@@ -18,21 +18,38 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
-import playground.thibautd.utils.KDTree;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import org.matsim.core.config.groups.ControlerConfigGroup;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author thibautd
  */
-public interface CliquesFiller {
-	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
-	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
+@Singleton
+public class CliquesCsvWriter extends AbstractCsvWriter {
+	private int cliqueId = 0;
 
-	boolean stopConsidering( Ego ego );
+	@Inject
+	public CliquesCsvWriter(
+			final ControlerConfigGroup config,
+			final SocialNetworkSampler sampler,
+			final AutocloserModule.Closer closer ) {
+		super( config.getOutputDirectory() +"/output_cliques.csv" , sampler , closer );
+	}
+
+	@Override
+	protected String titleLine() {
+		return "cliqueId\tegoId";
+	}
+
+	@Override
+	protected Iterable<String> cliqueLines( final Set<Ego> clique ) {
+		final int currentClique = cliqueId++;
+		return clique.stream()
+				.map( ego -> currentClique +"\t"+ ego.getId() )
+				.collect( Collectors.toList() );
+	}
 }

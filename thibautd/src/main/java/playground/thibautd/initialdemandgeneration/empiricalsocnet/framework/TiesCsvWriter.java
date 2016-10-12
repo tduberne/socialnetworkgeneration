@@ -18,21 +18,44 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
-import playground.thibautd.utils.KDTree;
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+import org.matsim.core.config.groups.ControlerConfigGroup;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author thibautd
  */
-public interface CliquesFiller {
-	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
-	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
+@Singleton
+public class TiesCsvWriter extends AbstractCsvWriter {
+	@Inject
+	public TiesCsvWriter(
+			final ControlerConfigGroup config,
+			final SocialNetworkSampler sampler,
+			final AutocloserModule.Closer closer ) {
+		super( config.getOutputDirectory() +"/output_ties.csv" , sampler , closer );
+	}
 
-	boolean stopConsidering( Ego ego );
+	@Override
+	protected String titleLine() {
+		return "egoId\tegoPlannedDegree\talterId\talterPlannedDegree";
+	}
+
+	@Override
+	protected Iterable<String> cliqueLines( final Set<Ego> clique ) {
+		final List<String> lines = new ArrayList<>();
+
+		for ( Ego ego : clique ) {
+			for ( Ego alter : clique ) {
+				// only write in one direction?
+				if ( alter == ego ) continue;
+				lines.add( ego.getId() +"\t"+ ego.getDegree() +"\t"+ alter.getId() +"\t"+ alter.getDegree() );
+			}
+		}
+
+		return lines;
+	}
 }

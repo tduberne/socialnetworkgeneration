@@ -18,21 +18,17 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
-import playground.thibautd.utils.KDTree;
-
-import java.util.Set;
+import org.matsim.core.controler.AbstractModule;
+import org.matsim.core.scenario.ScenarioByConfigModule;
 
 /**
  * @author thibautd
  */
-public interface CliquesFiller {
-	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
-	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
-
-	boolean stopConsidering( Ego ego );
+public class SocialNetworkSamplerModule extends AbstractModule {
+	@Override
+	public void install() {
+		// assumes the Injector is created the MATSim way.
+		install( new ScenarioByConfigModule() );
+		bind( SocialNetworkSampler.class );
+	}
 }

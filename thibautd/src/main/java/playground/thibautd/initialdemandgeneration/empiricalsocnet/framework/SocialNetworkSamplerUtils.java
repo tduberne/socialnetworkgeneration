@@ -18,21 +18,23 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
-import playground.thibautd.utils.KDTree;
+import com.google.inject.Module;
+import org.matsim.contrib.socnetsim.framework.population.SocialNetwork;
+import org.matsim.core.config.Config;
+import org.matsim.core.controler.Injector;
 
-import java.util.Set;
+import java.util.Arrays;
 
 /**
  * @author thibautd
  */
-public interface CliquesFiller {
-	/**
-	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
-	 * @param ego the "center" of the clique
-	 * @param egosWithFreeStubs
-	 * @return The set of egos pertaining to the clique, including the "center", already modified.
-	 */
-	Set<Ego> sampleClique( Ego ego, KDTree<Ego> egosWithFreeStubs );
+public class SocialNetworkSamplerUtils {
+	public static SocialNetwork sampleSocialNetwork( final Config config, final Module... modules ) {
+		final Module[] allModules = Arrays.copyOf( modules , modules.length + 1 );
+		allModules[ allModules.length - 1 ] = new SocialNetworkSamplerModule();
+		final com.google.inject.Injector injector = Injector.createInjector( config , allModules );
 
-	boolean stopConsidering( Ego ego );
+		return injector.getInstance( SocialNetworkSampler.class ).sampleSocialNetwork();
+	}
 }
+
