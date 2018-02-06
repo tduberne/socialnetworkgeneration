@@ -141,7 +141,9 @@
 		<module>singapore</module>
 		<module>southAfrica</module>
 		<module>stockholm</module>
+		<!--
 		<module>thibautd</module>
+		-->
 		<module>wrashid</module>
 	</modules>
 
