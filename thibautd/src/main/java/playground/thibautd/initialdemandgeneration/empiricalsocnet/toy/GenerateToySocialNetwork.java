@@ -22,7 +22,7 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.ConfigWriter;
-import playground.ivt.utils.MoreIOUtils;
+import playground.thibautd.utils.MoreIOUtils;
 import playground.thibautd.initialdemandgeneration.empiricalsocnet.framework.AutocloserModule;
 import playground.thibautd.initialdemandgeneration.empiricalsocnet.framework.SocialNetworkSamplerUtils;
 
