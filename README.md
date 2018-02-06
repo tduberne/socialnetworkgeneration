@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tduberne/socialnetworkgeneration.svg?branch=master)](https://travis-ci.org/tduberne/socialnetworkgeneration)
+
 # Social Network Generation
 
 A small library to efficiently generate large scale (several million agents) synthetic social networks,
