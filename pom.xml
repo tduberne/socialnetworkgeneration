@@ -32,11 +32,6 @@
             <id>jsprit-releases</id>
             <url>https://github.com/jsprit/mvn-rep/raw/master/releases</url>
         </repository>
-        <repository>
-            <!-- Some custom-hosted dependencies on our web page, maintained by mrieser -->
-            <id>matsim-custom</id>
-            <url>http://matsim.org/m2repo</url>
-        </repository>
 
     </repositories>
 
@@ -74,6 +69,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19</version>
                 <configuration>
                     <excludes>
                         <exclude>**/*IntegrationTest.java</exclude>
