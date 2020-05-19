@@ -18,16 +18,21 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
+import playground.thibautd.initialdemandgeneration.empiricalsocnet.snowball.cliquedistributionsnowball.CliquesDistributionCliquesFiller;
 import playground.thibautd.utils.spatialcollections.SpatialTree;
 
 import java.util.Set;
 
 /**
+ * Provides a method to allocate an {@link Ego} to each free spot in a {@link CliqueStub}.
+ * Look at {@link CliquesDistributionCliquesFiller} for an example implementation.
+ * 
  * @author thibautd
  */
 public interface CliquesFiller {
 	/**
 	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
+	 * 
 	 * @param stub the "center" of the clique
 	 * @param freeStubs
 	 * @return The set of egos pertaining to the clique, including the "center", already modified.

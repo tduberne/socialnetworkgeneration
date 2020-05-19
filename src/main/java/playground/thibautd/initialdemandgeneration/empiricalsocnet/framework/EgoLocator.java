@@ -18,9 +18,20 @@
  * *********************************************************************** */
 package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
+import playground.thibautd.initialdemandgeneration.empiricalsocnet.snowball.SnowballLocator;
 import playground.thibautd.utils.spatialcollections.SpatialCollectionUtils;
 
 /**
+ * <p>
+ * Defines the coordinates of the {@link Ego} corresponding to a {@link CliqueStub} in a Cartesian plane.
+ * In addition to spatial coordinates of the home location, dimensions can include socio-demographic characteristics,
+ * such as age, gender, or any other dimension relevant to the choice of social contacts.
+ * </p>
+ * 
+ * <p>
+ * Refer to {@link SnowballLocator} for an example implementation.
+ * </p>
+ * 
  * @author thibautd
  */
 public interface EgoLocator extends SpatialCollectionUtils.Coordinate<CliqueStub> {

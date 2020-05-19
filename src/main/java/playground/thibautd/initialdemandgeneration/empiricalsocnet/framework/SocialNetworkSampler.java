@@ -37,6 +37,15 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
+ * <p>
+ * Class that contains the general logic for generating a social network,
+ * using a heuristic approach that was shown empirically to perform well and fast on large scale networks.
+ * </p>
+ * 
+ * <p>
+ * It implements the appraoch described in chapter 5 of <a href="https://doi.org/10.3929/ethz-b-000165685">this dissertation</a>. Please refer to it for details.
+ * </p>
+ * 
  * @author thibautd
  */
 @Singleton
@@ -51,6 +60,14 @@ public class SocialNetworkSampler {
 
 	private Consumer<Set<Ego>> cliquesListener = (e) -> {};
 
+	/**
+	 * 
+	 * @param population the population for which a social network will be generated
+	 * @param degreeDistribution defines the rules to sample the {@link CliqueStub}s for each agent
+	 * @param cliquesFiller defines the rules to match {@link CliqueStub}s to close the network
+	 * @param egoLocator translates ego sociodemographics into a point in a cartesian space, used for closest-point matching
+	 * @param metric defines the metric used to find the "closest" {@link Ego} to a point in the space of sociodemographics.
+	 */
 	@Inject
 	public SocialNetworkSampler(
 			final Population population,
