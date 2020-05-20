@@ -7,6 +7,18 @@
     <version>0.1.0-SNAPSHOT</version>
 
     <repositories>
+		<repository>
+			<id>osgeo</id>
+			<name>OSGeo Release Repository</name>
+			<url>https://repo.osgeo.org/repository/release/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+
         <repository>
             <id>matsim</id>
             <url>https://dl.bintray.com/matsim/matsim</url>
@@ -20,12 +32,6 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-        </repository>
-        <repository>
-            <!-- Geotools is not on Maven central -->
-            <id>osgeo</id>
-            <name>Geotools repository</name>
-            <url>http://download.osgeo.org/webdav/geotools</url>
         </repository>
         <repository>
             <!-- for older jsprit versions. please migrate to new, they are on Maven central -->
@@ -88,7 +94,16 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                    <reportOutputDirectory>docs</reportOutputDirectory>
+                    <destDir>/</destDir>
+                    <source>8</source>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
