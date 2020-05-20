@@ -90,6 +90,9 @@ public class MoreIOUtils {
 
 	/**
 	 * creates an output directory if it does not exists, and creates a logfile.
+	 *
+	 * @param outputDir the directory to create
+     * @return a object that can be used in a try-with-resources block
 	 */
 	public static AutoCloseable initOut( final String outputDir ) {
 		return initOut( outputDir , null );
@@ -124,6 +127,9 @@ public class MoreIOUtils {
 	 * Redefine the IOUtils method, with a different file and appender name.
 	 * Otherwise, runing a controler in a borader context stops the logging at
 	 * the end of the controler shutdown.
+     *
+	 * @param logEvents existing log events
+	 * @param outputDirectory directory in which to put the log files
 	 */
 	public static void initOutputDirLogging(
 			final String outputDirectory,

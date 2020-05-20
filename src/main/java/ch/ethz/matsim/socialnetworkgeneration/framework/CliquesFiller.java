@@ -34,7 +34,7 @@ public interface CliquesFiller {
 	 * Sample a feasible clique, fills the alters lists of the egos, and returns the clique.
 	 * 
 	 * @param stub the "center" of the clique
-	 * @param freeStubs
+	 * @param freeStubs a spatial tree containing stubs that are not yet filled
 	 * @return The set of egos pertaining to the clique, including the "center", already modified.
 	 */
 	Set<Ego> sampleClique( CliqueStub stub , SpatialTree<double[], CliqueStub> freeStubs );

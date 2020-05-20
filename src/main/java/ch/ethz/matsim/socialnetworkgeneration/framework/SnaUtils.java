@@ -63,6 +63,9 @@ public class SnaUtils {
 	 * Uses wedge-sampling to estimate clustering coefficient.
 	 * see http://onlinelibrary.wiley.com/doi/10.1002/sam.11224/full
 	 *
+	 * @param nThreads number of threads
+	 * @param randomSeed random seed
+	 * @param socialNetwork social network
 	 * @param precision the result is guaranteed to fall at least so close to the exact value
 	 * with probability probabilityPrecision
 	 * @param probabilityPrecision the probability with which the precision criterion is fulfilled

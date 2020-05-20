@@ -53,6 +53,12 @@ public class RandomUtils {
 	 * Gets a random sublist of the required size. The input list is modified in place, such that the random sublist
 	 * corresponds to the <tt>size</tt> first elements of the modified list.
 	 * This is done for efficiency reasons.
+	 *
+	 * @param random the random number generator
+	 * @param l the list to get a subset in place
+	 * @param size the size of the output
+	 *
+	 * @return a sublist with the required characteristics
 	 */
 	public static <E> List<E> sublist_withSideEffect( final Random random , final List<E> l , final int size ) {
 		if ( l.size() <= size ) return new ArrayList<>( l );
