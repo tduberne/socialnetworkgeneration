@@ -130,6 +130,8 @@ public class MoreIOUtils {
      *
 	 * @param logEvents existing log events
 	 * @param outputDirectory directory in which to put the log files
+	 *
+	 * @throws IOException if an error occurs while creating the necessary files
 	 */
 	public static void initOutputDirLogging(
 			final String outputDirectory,

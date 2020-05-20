@@ -69,6 +69,8 @@ public class SnaUtils {
 	 * @param precision the result is guaranteed to fall at least so close to the exact value
 	 * with probability probabilityPrecision
 	 * @param probabilityPrecision the probability with which the precision criterion is fulfilled
+	 *
+	 * @return the clustering coefficient
 	 */
 	public static double estimateClusteringCoefficient(
 			final long randomSeed,

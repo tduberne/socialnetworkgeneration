@@ -51,12 +51,14 @@ public class RandomUtils {
 
 	/**
 	 * Gets a random sublist of the required size. The input list is modified in place, such that the random sublist
-	 * corresponds to the <tt>size</tt> first elements of the modified list.
+	 * corresponds to the <code>size</code> first elements of the modified list.
 	 * This is done for efficiency reasons.
 	 *
 	 * @param random the random number generator
 	 * @param l the list to get a subset in place
 	 * @param size the size of the output
+	 *
+	 * @param <E> the type of the list element
 	 *
 	 * @return a sublist with the required characteristics
 	 */
