@@ -27,7 +27,7 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.testcases.MatsimTestUtils;
 
-import playground.thibautd.initialdemandgeneration.empiricalsocnet.framework.SnaUtils;
+import ch.ethz.matsim.socialnetworkgeneration.framework.SnaUtils;
 
 import java.util.ArrayList;
 import java.util.List;
