@@ -68,10 +68,6 @@ public class LockedSocialNetwork implements SocialNetwork {
 		this( true );
 	}
 
-	public LockedSocialNetwork(final SocialPopulation<?> pop) {
-		this( pop.getAgents() );
-	}
-
 	public LockedSocialNetwork(final LockedSocialNetwork toCopy) {
 		this( toCopy.failOnUnknownEgo,
 			new LinkedHashMap<Id<Person>, Set<Id<Person>>>( toCopy.alterEgoMap ) );

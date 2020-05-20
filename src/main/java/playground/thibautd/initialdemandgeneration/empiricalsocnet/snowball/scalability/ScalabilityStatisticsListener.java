@@ -31,10 +31,9 @@ import org.matsim.core.utils.io.IOUtils;
 import org.matsim.core.utils.io.UncheckedIOException;
 import playground.thibautd.utils.MonitoringUtils;
 import playground.thibautd.initialdemandgeneration.empiricalsocnet.framework.Ego;
+import playground.thibautd.initialdemandgeneration.empiricalsocnet.framework.SnaUtils;
 import playground.thibautd.initialdemandgeneration.empiricalsocnet.framework.SocialNetworkSampler;
 import playground.thibautd.initialdemandgeneration.empiricalsocnet.snowball.SnowballLocator;
-import playground.thibautd.initialdemandgeneration.socnetgen.framework.SnaUtils;
-
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;

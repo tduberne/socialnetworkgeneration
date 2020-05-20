@@ -17,7 +17,7 @@
  *   See also COPYING, LICENSE and WARRANTY file                           *
  *                                                                         *
  * *********************************************************************** */
-package playground.thibautd.initialdemandgeneration.socnetgen.framework;
+package playground.thibautd.initialdemandgeneration.empiricalsocnet.framework;
 
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Id;
