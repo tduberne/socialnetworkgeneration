@@ -1,0 +1,8 @@
+ch.ethz.matsim.socialnetworkgeneration
+ch.ethz.matsim.socialnetworkgeneration.framework
+ch.ethz.matsim.socialnetworkgeneration.snowball
+ch.ethz.matsim.socialnetworkgeneration.snowball.cliquedistributionsnowball
+ch.ethz.matsim.socialnetworkgeneration.snowball.scalability
+ch.ethz.matsim.socialnetworkgeneration.toy
+ch.ethz.matsim.socialnetworkgeneration.utils
+ch.ethz.matsim.socialnetworkgeneration.utils.spatialcollections
